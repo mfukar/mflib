@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import math
+from math import log
 
 def godel(x,y):
     """
@@ -14,7 +14,7 @@ def degodel_log(z):
     >>> degodel_log(3547411905944302159585997044953199142424)
     (3, 81)
     """
-    x,y = 0,0
+    x, y = 0, 0
 
     ## "galloping" phrase
     lo_y=0
@@ -23,7 +23,7 @@ def degodel_log(z):
         lo_y  = hi_y
         hi_y *= 2
 
-    # ok, we know it's somewhere lo_y <= y < hi_y
+    # OK, we know it's somewhere lo_y <= y < hi_y
     while (lo_y < hi_y):
         test_y = int((hi_y + lo_y + 1) / 2)
         if z % 3 ** test_y:
@@ -33,5 +33,5 @@ def degodel_log(z):
 
     z /= (3**lo_y)
     # numerical stability issue here
-    x = int(math.log(z + 0.01, 2))
+    x = int(log(z + 0.01, 2))
     return (x, lo_y)

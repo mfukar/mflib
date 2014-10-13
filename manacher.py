@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     <+version+>
 # @date        Created:     Thu May 10, 2012 22:28 GTB Daylight Time
-#              Last Update: Σαβ Οκτ 11, 2014 21:31 GTB Daylight Time
+#              Last Update: Δευ Οκτ 13, 2014 18:39 GTB Daylight Time
 #------------------------------------------------------------------------
 # Description: Manacher's longest palindrome detection
 #              algorithm implementation.
@@ -16,6 +16,8 @@
 def manacher(seq):
     """Returns the longest palindromic substring of a sequence SEQ as a list.
     Works in time linear to the length of the input.
+    >>> manacher('opposes')
+    [0, 1, 0, 1, 4, 1, 0, 1, 0, 1, 0, 3, 0, 1, 0]
     """
     seqLen = len(seq)
     l = []
@@ -113,9 +115,3 @@ def manacher(seq):
         l.append(min(d, l[i]))
 
     return l
-
-def main():
-	print(manacher('opposes'))
-
-if __name__ == '__main__':
-	main()

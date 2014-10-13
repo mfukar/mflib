@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# @file        C:\Documents and Settings\mfoukara\projects\obf.py
+# @file        mul_xor_shuffle.py
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Fri Jan 06, 2012 15:55 GTB Standard Time
-#              Last Update: Δευ Οκτ 13, 2014 18:02 GTB Daylight Time
+#              Last Update: Δευ Οκτ 13, 2014 18:47 GTB Daylight Time
 #------------------------------------------------------------------------
 # Description: A simple obfuscation scheme, just to throw people off or
 #              discourage easy tampering of values.
@@ -14,6 +14,12 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
 mask = 0x1a02f3f12876ce55
+
+def _binstr(n, l = 16):
+    tmp = n<0 and binarystr((2<<l)+n) or n and _binstr(n>>1).lstrip('0') + str(n&1) or '00'
+    if len(tmp) % 2:
+        tmp = '0' + tmp
+    return tmp
 
 def _modmul(x):
     m = 2**64
@@ -38,11 +44,8 @@ def perfect_unshuffle(seq):
     """
     return seq[::2] + seq[1::2]
 
-def _binstr(n, l = 16):
-    tmp = n<0 and binarystr((2<<l)+n) or n and _binstr(n>>1).lstrip('0') + str(n&1) or '00'
-    if len(tmp) % 2:
-        tmp = '0' + tmp
-    return tmp
+def mul_xor_shuffle(item):
+    return perfect_shuffle(list(_binstr(_modmul(i) ^ mask)))
 
 if __name__ == '__main__':
     """ mul-xor-shuffle """

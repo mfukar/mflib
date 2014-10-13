@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 def levenshtein(s1, s2):
+    """Returns the Levenshtein distance of S1 and S2.
+    >>> levenshtein('aabcadcdbaba', 'aabacbaaadb')
+    6
+    """
     if len(s1) < len(s2):
         return levenshtein(s2, s1)
     if not s1:

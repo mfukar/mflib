@@ -1,25 +1,29 @@
 #!/usr/bin/env python
-# @file        util.py
+# @file        rolling.py
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Feb 14, 2012 13:19 GTB Standard Time
-#              Last Update: Sun Apr 14, 2013 19:39 GTB Daylight Time
+#              Last Update: Δευ Οκτ 13, 2014 18:33 GTB Daylight Time
 #------------------------------------------------------------------------
-# Description: Library with useful utility functions, decorators, etc.
+# Description: Rolling window generator over an iterator.
 #------------------------------------------------------------------------
-# History:     0.1 - Rolling window over an iterator
+# History:     0.1 - First implementation
 # TODO:        <+missing features+>
 #------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
-import itertools, collections
+from itertools import tee, islice, count
+from collections import deque
 
 def rolling_window(iterator, length, step = 1):
-    streams = itertools.tee(iterator, length)
-    return zip(*[itertools.islice(s, i, None, step) for s,i in zip(streams, itertools.count())])
+    """Returns an iterator of length LENGTH over ITERATOR, which advances by STEP after
+    each call.
+    """
+    streams = tee(iterator, length)
+    return zip(*[islice(s, i, None, step) for s,i in zip(streams, count())])
 
 def rolling_average(iterator, length):
-    deck = collections.deque(itertools.islice(iterator, 0, length))
+    deck = deque(islice(iterator, 0, length))
     rolling_sum = sum(deck)
     yield rolling_sum / length
     for elem in iterator:

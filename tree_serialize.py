@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# @file        C:\Documents and Settings\mfoukara\tree_serialize.py
+# @file        tree_serialize.py
 # @author      Michael Foukarakis
 # @version     1.0
 # @date        Created:     Tue Oct 25, 2011 12:46 GTB Daylight Time
-#              Last Update: Δευ Οκτ 13, 2014 18:03 GTB Daylight Time
+#              Last Update:  Δευ Οκτ 13, 2014 18:29 GTB Daylight Time
 #------------------------------------------------------------------------
 # Description: Tree serialization routines
 #------------------------------------------------------------------------
