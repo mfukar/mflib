@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     1.0
 # @date        Created:     Tue Oct 25, 2011 12:46 GTB Daylight Time
-#              Last Update:  Δευ Οκτ 13, 2014 18:29 GTB Daylight Time
+#              Last Update:  Thu Oct 16, 2014 11:03 EEST
 #------------------------------------------------------------------------
 # Description: Tree serialization routines
 #------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
 
-def serialize_tree(root_node):
+def serialize_tree(root):
     """ Given a tree root node (some object with a 'data' attribute and a 'children'
     attribute which is a list of child nodes), serialize it to a list, each element of
     which is either a pair (data, has_children_flag), or None (which signals an end of a
@@ -26,17 +26,16 @@ def serialize_tree(root_node):
             # The node has children, so:
             #  1. add it to the list & mark that it has children
             #  2. recursively serialize its children
-            #  3. finally add a null entry to signal that the children
-            #     of this node have ended
+            #  3. finally add a "null" entry to signal this node has no children
             lst.append((node.data, True))
             for child in node.children:
                 serialize_aux(child)
             lst.append(None)
         else:
             # The node is child-less, so simply add it to
-            # the list & mark that it has no chilren
+            # the list & mark that it has no children:
             lst.append((node.data, False))
-    serialize_aux(root_node)
+    serialize_aux(root)
     return lst
 
 def deserialize_tree(nodelist):

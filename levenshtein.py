@@ -1,5 +1,17 @@
 #!/usr/bin/env python
+# @file        levenshtein.py
+# @author      Michael Foukarakis
+# @version     0.1
+# @date        Created:     Thu Oct 16, 2014 10:57 EEST
+#              Last Update: Thu Oct 16, 2014 11:01 EEST
+#------------------------------------------------------------------------
+# Description: Levenshtein string distance implementation
+#------------------------------------------------------------------------
+# History:     <+history+>
+# TODO:        <+missing features+>
+#------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
+#------------------------------------------------------------------------
 
 def levenshtein(s1, s2):
     """Returns the Levenshtein distance of S1 and S2.

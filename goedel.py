@@ -1,5 +1,18 @@
 #!/usr/bin/env python
+# @file        goedel.py
+# @author      Michael Foukarakis
+# @version     0.1
+# @date        Created:     Thu Oct 16, 2014 10:57 EEST
+#              Last Update: Thu Oct 16, 2014 11:03 EEST
+#------------------------------------------------------------------------
+# Description: Implementation of a simple pairing function using Gödel numbering. Code
+# taken from hbfs.wordpress.com/2011/09/27/pairing-functions/
+#------------------------------------------------------------------------
+# History:     <+history+>
+# TODO:        <+missing features+>
+#------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
+#------------------------------------------------------------------------
 from math import log
 
 def godel(x,y):
@@ -16,7 +29,7 @@ def degodel_log(z):
     """
     x, y = 0, 0
 
-    ## "galloping" phrase
+    ## "Galloping" phase:
     lo_y=0
     hi_y=1
     while (z % 3**hi_y == 0):
@@ -32,6 +45,6 @@ def degodel_log(z):
             lo_y = test_y
 
     z /= (3**lo_y)
-    # numerical stability issue here
+    # Numerical stability issue here
     x = int(log(z + 0.01, 2))
     return (x, lo_y)
