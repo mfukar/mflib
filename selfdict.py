@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# @file        /Users/mfukar/src/mflib/selfdict.py
+# @file        selfdict.py
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Oct 14, 2014 13:51 EEST
-#              Last Update: Tue Oct 14, 2014 13:53 EEST
+#              Last Update: Thu Nov 13, 2014 19:11 SAST
 #------------------------------------------------------------------------
 # Description: A defaultdict in which the key is also the value.
 #------------------------------------------------------------------------

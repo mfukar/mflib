@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Feb 14, 2012 13:19 GTB Standard Time
-#              Last Update: Thu Oct 16, 2014 10:56 EEST
+#              Last Update: Thu Nov 13, 2014 19:21 SAST
 #------------------------------------------------------------------------
 # Description: Rolling window generator over an iterator.
 #------------------------------------------------------------------------
@@ -24,13 +24,6 @@ def rolling_window(iterator, length, step = 1):
     streams = tee(iterator, length)
     return zip(*[islice(s, i, None, step) for s,i in zip(streams, count())])
 
-def rolling_average(iterator, length):
-    deck = deque(islice(iterator, 0, length))
-    rolling_sum = sum(deck)
-    yield rolling_sum / length
-    for elem in iterator:
-        rolling_sum -= deck.popleft()
-        rolling_sum += elem
-        deck.append(elem)
-        yield rolling_sum / length
-
+def rolling_average(sequence, length):
+    for win in rolling_window(sequence, length):
+        yield sum(win) / length
