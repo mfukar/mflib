@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Feb 14, 2012 13:19 GTB Standard Time
-#              Last Update: Thu Nov 13, 2014 19:21 SAST
+#              Last Update: Thu Nov 13, 2014 20:19 SAST
 #------------------------------------------------------------------------
 # Description: Rolling window generator over an iterator.
 #------------------------------------------------------------------------
@@ -13,7 +13,6 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
 from itertools import tee, islice, count
-from collections import deque
 
 def rolling_window(iterator, length, step = 1):
     """Returns an iterator of length LENGTH over ITERATOR, which advances by STEP after
