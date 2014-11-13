@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Fri Jan 06, 2012 15:55 GTB Standard Time
-#              Last Update: Δευ Οκτ 13, 2014 18:47 GTB Daylight Time
+#              Last Update: Thu Oct 23, 2014 15:31 SAST
 #------------------------------------------------------------------------
 # Description: A simple obfuscation scheme, just to throw people off or
 #              discourage easy tampering of values.
@@ -45,7 +45,7 @@ def perfect_unshuffle(seq):
     return seq[::2] + seq[1::2]
 
 def mul_xor_shuffle(item):
-    return perfect_shuffle(list(_binstr(_modmul(i) ^ mask)))
+    return perfect_shuffle(list(_binstr(_modmul(item) ^ mask)))
 
 if __name__ == '__main__':
     """ mul-xor-shuffle """

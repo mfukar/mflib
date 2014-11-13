@@ -3,13 +3,13 @@
 # @author      Michael Foukarakis
 # @version     <+version+>
 # @date        Created:     Thu May 10, 2012 22:28 GTB Daylight Time
-#              Last Update: Δευ Οκτ 13, 2014 18:39 GTB Daylight Time
+#              Last Update: Thu Oct 23, 2014 15:36 SAST
 #------------------------------------------------------------------------
 # Description: Manacher's longest palindrome detection
 #              algorithm implementation.
 #------------------------------------------------------------------------
 # History:     <+history+>
-# TODO:        <+missing features+>
+# TODO:        Translate the list returned from manacher() into the actual string?
 #------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
