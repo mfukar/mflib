@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # @file        mul_xor_shuffle.py
 # @author      Michael Foukarakis
-# @version     0.1
+# @version     0.2
 # @date        Created:     Fri Jan 06, 2012 15:55 GTB Standard Time
 #              Last Update: Mon Jan 19, 2015 11:22 EET
 #------------------------------------------------------------------------
