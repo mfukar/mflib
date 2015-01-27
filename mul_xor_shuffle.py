@@ -3,14 +3,14 @@
 # @author      Michael Foukarakis
 # @version     0.2
 # @date        Created:     Fri Jan 06, 2012 15:55 GTB Standard Time
-#              Last Update: Mon Jan 19, 2015 11:22 EET
+#              Last Update: Tue Jan 27, 2015 18:37 EET
 #------------------------------------------------------------------------
 # Description: A simple obfuscation scheme, just to throw people off or
 #              discourage easy tampering of values.
 #              Inspired from hbfs.wordpress.com/2011/11/08/mild-obfuscation
 #------------------------------------------------------------------------
 # History:     None yet
-# TODO:        Nothing yet.
+# TODO:        Implement all ¡magic! methods.
 #------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
@@ -26,6 +26,12 @@ class PerfectShuffledNumber():
 
     def __str__(self):
         return 'mask: {} sign: {} value: {}'.format(self.mask, self.sign, '0b'+''.join(self.obfuscated_value))
+
+    def __add__(self, rhs):
+        return PerfectShuffledNumber(self.value() + rhs.value())
+
+    def __sub__(self, rhs):
+        pass
 
     def _modmul(self, x):
         m = 2**64
@@ -49,6 +55,7 @@ def perfect_shuffle(seq):
     return [item for pair in zip(seq[:h], seq[h:]) for item in pair]
 
 def perfect_unshuffle(seq):
-    """Returns a list containing the perfectly unshuffled supplied sequence SEQ, if previously perfectly shuffled.
+    """Returns a list containing the perfectly unshuffled supplied sequence SEQ, if
+    previously perfectly shuffled.
     """
     return seq[::2] + seq[1::2]
