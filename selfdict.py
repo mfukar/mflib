@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Oct 14, 2014 13:51 EEST
-#              Last Update: Thu Nov 13, 2014 19:11 SAST
+#              Last Update: Tue Jan 27, 2015 18:38 EET
 #------------------------------------------------------------------------
 # Description: A defaultdict in which the key is also the value.
 #------------------------------------------------------------------------
@@ -15,8 +15,9 @@
 from collections import defaultdict
 
 class selfdict(defaultdict):
-    """A defaultdict in which the key is also the value. This has the following good
-    properties:
+    """A selfdict is a defaultdict in which the key is also the value. This has the
+    following good properties:
+
         * You can index its values using one of their properties as the key. To index
           objects based on their .name, you implement the __hash__ method to hash .name
           members.
