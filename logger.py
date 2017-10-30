@@ -1,42 +1,74 @@
 #!/usr/bin/env python
-# @file        /Users/mfukar/src/mflib/logger.py
+# @file        mflib/logger.py
 # @author      Michael Foukarakis
 # @version     0.1
 # @date        Created:     Tue Jan 27, 2015 18:19 EET
-#              Last Update: Tue Jan 27, 2015 18:21 EET
+#              Last Update: Mon Oct 30, 2017 10:54 CET
 #------------------------------------------------------------------------
-# Description: <+description+>
+# Description: Useful constructs for logging
 #------------------------------------------------------------------------
 # History:     <+history+>
 # TODO:        <+missing features+>
 #------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------------------
-import traceback
+import sys
 
-class ExceptionLogger():
-    def __init__(self):
-        pass
+class duplicate_stdout():
+    """Context manager for temporarily duplicating stdout to a file. Like tee, but limited in scope.
+    # How to duplicate help() to 'help.txt':
+    with duplicate_stdout('help.txt', 'w'):
+        help(ord)
 
-def log_traceback(ex):
-    tb_lines = [line.rstrip('\n') for line in
-                traceback.format_exception(ex.__class__, ex, ex.__traceback__)
-               ]
+    Not reusable, and not reentrant.
+    """
+    def __init__(self, path, mode):
+        self.path = path
+        self.mode = mode
+        self.stdout = sys.stdout
 
-    # tb_lines is now a JSON-serialiable list of lines containing the
-    # stack trace, such as:
-    # [ 'Traceback (most recent call last):',
-    #   '  File "example-for-python3.py",
-    #   line 14,
-    #   in <module>\n    x = int(\'foo\')',
-    #   "ValueError: invalid literal for int() with base 10: 'foo'",
-    # ]
+    def __enter__(self):
+        self.fh = open(self.path, self.mode)
+        return self
 
-    # TODO implement the ExceptionLogger class,
-    # and the timestamping:
-    exception_logger.log(tb_lines)
+    def __exit__(self, *args):
+        sys.stdout = self.stdout
+        self.fh.flush()
+        self.fh.close()
 
-try:
-    x = int('foo')
-except Exception as ex:
-    log_traceback(ex)
+    def write(self, buffer):
+        self.fh.write(buffer)
+        self.stdout.write(buffer)
+
+    def flush(self):
+        self.fh.flush()
+
+class duplicate_stderr():
+    """Context manager for temporarily duplicating stderr to a file. Like tee, but limited in scope.
+
+    # How to duplicate sys.stderr.write to 'help.txt':
+    with duplicate_stderr('help.txt', 'w'):
+        sys.stderr.write(help(ord))
+
+    Not reusable, and not reentrant.
+    """
+    def __init__(self, path, mode):
+        self.path = path
+        self.mode = mode
+        self.stderr = sys.stderr
+
+    def __enter__(self):
+        self.fh = open(self.path, self.mode)
+        return self
+
+    def __exit__(self, *args):
+        sys.stderr = self.stderr
+        self.fh.flush()
+        self.fh.close()
+
+    def write(self, buffer):
+        self.fh.write(buffer)
+        self.stderr.write(buffer)
+
+    def flush(self):
+        self.fh.flush()
