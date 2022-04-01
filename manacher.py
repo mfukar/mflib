@@ -3,7 +3,7 @@
 # @author      Michael Foukarakis
 # @version     <+version+>
 # @date        Created:     Thu May 10, 2012 22:28 GTB Daylight Time
-#              Last Update: Thu Oct 23, 2014 15:36 SAST
+#              Last Update: Fri Apr 01, 2022 17:47 W. Europe Daylight Time
 #------------------------------------------------------------------------
 # Description: Manacher's longest palindrome detection
 #              algorithm implementation.
@@ -18,6 +18,29 @@ def manacher(seq):
     Works in time linear to the length of the input.
     >>> manacher('opposes')
     [0, 1, 0, 1, 4, 1, 0, 1, 0, 1, 0, 3, 0, 1, 0]
+    >>> testcases = ['anttna', 'antiitna', 'opposed', 'defilifed', 'babcbabcbaccba', 'abaaba', 'abababa', 'abcbabcbabcba', 'forgeeksskeegfor', 'caba', 'abacdfgdcaba', 'abacdfgdcabba', 'abacdedcaba']
+    >>> expected = ['anttna', 'antiitna', 'oppo', 'defilifed', 'abcbabcba', 'abaaba', 'abababa', 'abcbabcbabcba', 'geeksskeeg', 'aba', 'aba', 'abba', 'abacdedcaba']
+    >>> index_max = lambda seq : max(range(len(seq)), key=seq.__getitem__)
+    >>> for c, e in zip(testcases, expected):
+    ...      result = manacher(c)
+    ...      index = index_max(result)
+    ...      length = result[index]
+    ...      start = (index - length) // 2
+    ...      end = start + length
+    ...      print(c[start:end])
+    anttna
+    antiitna
+    oppo
+    defilifed
+    abcbabcba
+    abaaba
+    abababa
+    abcbabcbabcba
+    geeksskeeg
+    aba
+    aba
+    abba
+    abacdedcaba
     """
     seqLen = len(seq)
     l = []
